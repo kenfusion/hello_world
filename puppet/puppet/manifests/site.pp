@@ -5,3 +5,7 @@ node default {
 node 'node-01' {
   include lb
 }
+
+node 'node-02' {
+  include db
+}

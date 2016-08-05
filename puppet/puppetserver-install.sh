@@ -9,8 +9,9 @@ sudo ln -s /vagrant/puppet/manifests/site.pp /etc/puppetlabs/code/environments/p
 sudo rm -rf /etc/puppetlabs/code/environments/production/modules/
 sudo ln -s /vagrant/puppet/modules /etc/puppetlabs/code/environments/production/
 
+sudo /opt/puppetlabs/bin/puppet module install puppetlabs-mysql
+
 # sudo /opt/puppetlabs/bin/puppet module install puppetlabs-ntp
 # sudo /opt/puppetlabs/bin/puppet module install puppetlabs-haproxy
-# sudo /opt/puppetlabs/bin/puppet module install puppetlabs-mysql
 # sudo /opt/puppetlabs/bin/puppet module install puppetlabs-apache
 
