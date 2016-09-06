@@ -11,7 +11,7 @@ Vagrant.configure("2") do |config|
       puppetmaster_config.vm.hostname = "puppet.example.com"
       puppetmaster_config.vm.network :private_network, ip: "10.0.15.10"
       puppetmaster_config.vm.provider "virtualbox" do |vb|
-        vb.memory = "4096"
+        vb.memory = "2048"
         vb.cpus = 2
         vb.linked_clone = true
       end
