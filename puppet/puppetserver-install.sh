@@ -10,15 +10,15 @@ sudo sed -i 's/2g/512m/g' /etc/sysconfig/puppetserver
 # enable cert autosign
 sudo sh -c 'echo "*.example.com" >> /etc/puppetlabs/puppet/autosign.conf'
 
-sudo ln -s /vagrant/puppet/manifests/site.pp /etc/puppetlabs/code/environments/production/manifests/site.pp
-sudo rm -rf /etc/puppetlabs/code/environments/production/modules/
-sudo ln -s /vagrant/puppet/modules /etc/puppetlabs/code/environments/production/
+sudo ln -s /vagrant/puppet/production/manifests/site.pp /etc/puppetlabs/code/environments/production/manifests/site.pp
+sudo ln -s /vagrant/puppet/production/modules/db /etc/puppetlabs/code/environments/production/modules/
+sudo ln -s /vagrant/puppet/production/modules/lb /etc/puppetlabs/code/environments/production/modules/
+sudo ln -s /vagrant/puppet/production/modules/web /etc/puppetlabs/code/environments/production/modules/
+sudo ln -s /vagrant/puppet/production/modules/ntp /etc/puppetlabs/code/environments/production/modules/
 
 sudo /opt/puppetlabs/bin/puppet module install puppetlabs-mysql
-
 # sudo /opt/puppetlabs/bin/puppet module install puppetlabs-ntp
 # sudo /opt/puppetlabs/bin/puppet module install puppetlabs-haproxy
 # sudo /opt/puppetlabs/bin/puppet module install puppetlabs-apache
 
-sudo service puppetserver start
-sudo chkconfig puppetserver on
+sudo /opt/puppetlabs/bin/puppet resource service puppetserver ensure=running enable=true

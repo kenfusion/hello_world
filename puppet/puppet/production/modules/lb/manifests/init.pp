@@ -18,7 +18,7 @@ class lb {
   file { '/etc/haproxy/haproxy.cfg':
     notify => Service['haproxy'],
     ensure => present,
-    content => template('/vagrant/puppet/modules/lb/templates/haproxy.cfg.erb'),
+    content => template('lb/haproxy.cfg.erb'),
 
   }
 }

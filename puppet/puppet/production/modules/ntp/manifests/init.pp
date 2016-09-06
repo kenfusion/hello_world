@@ -18,7 +18,7 @@ class ntp {
   file { '/etc/ntp.conf':
     notify => Service['ntpd'],
     ensure => present,
-    content => template('/vagrant/puppet/modules/ntp/templates/ntp.conf.erb'),
+    content => template('ntp/ntp.conf.erb'),
 
   }
 }

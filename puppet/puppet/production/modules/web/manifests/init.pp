@@ -17,13 +17,13 @@ class web {
   file { '/etc/httpd/conf.d/headers.conf':
     notify => Service['httpd'],
     ensure => present,
-    content => template('/vagrant/puppet/modules/web/templates/headers.conf.erb'),
+    content => template('web/headers.conf.erb'),
   }
 
   file { '/var/www/html/index.php':
     notify => Service['httpd'],
     ensure => present,
-    content => template('/vagrant/puppet/modules/web/templates/index.php.erb'),
+    content => template('web/index.php.erb'),
   }
 
 }
