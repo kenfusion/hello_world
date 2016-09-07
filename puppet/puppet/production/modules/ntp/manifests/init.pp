@@ -1,5 +1,12 @@
 
 class ntp {
+
+  $ntpservice = $facts['os']['family'] ? {
+    'redhat'  => 'ntpd',
+    'debian'  => 'ntp',
+    default   => 'ntp',
+  }
+
   $ntpserver1 = '0.pool.ntp.org'
   $ntpserver2 = '1.pool.ntp.org'
   $ntpserver3 = '2.pool.ntp.org'
@@ -9,7 +16,7 @@ class ntp {
     ensure => installed,
   }
 
-  service { 'ntpd':
+  service { $ntpservice:
     require => Package['ntp'],
     ensure => running,
     enable => true,

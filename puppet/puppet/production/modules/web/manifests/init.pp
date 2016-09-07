@@ -27,30 +27,3 @@ class web {
   }
 
 }
-
-
-
-
-# - name: configure web servers
-#   hosts: web
-#   remote_user: vagrant
-#   become: True
-#   vars:
-#     db_user: dbuser
-#     db_password: abc123
-
-#   tasks:
-#     - name: create the index.php file
-#       template:
-#         src: index.php.j2
-#         dest: /var/www/html/index.php
-#     - name: create headers.conf file
-#       template:
-#           src: headers.conf.j2
-#           dest: /etc/httpd/conf.d/headers.conf
-#       notify: restart httpd
-#   handlers:
-#     - name: restart httpd
-#       service:
-#         name: httpd
-#         state: restarted

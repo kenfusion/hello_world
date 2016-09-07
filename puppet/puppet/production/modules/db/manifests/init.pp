@@ -1,8 +1,5 @@
 
 class db {
-  $db_user = 'dbuser'
-  $db_name = 'my_awsome_db'
-  $db_password = 'abc123'
 
   class { '::mysql::server':
     root_password           => '123abc',

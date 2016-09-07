@@ -1,9 +1,5 @@
 
 class lb {
-  $webhost1 = 'node-03'
-  $webhost2 = 'node-04'
-  $webip1 = '10.0.15.23'
-  $webip2 = '10.0.15.24'
 
   package { 'haproxy':
     ensure => installed,
