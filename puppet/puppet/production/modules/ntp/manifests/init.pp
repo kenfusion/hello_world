@@ -7,10 +7,8 @@ class ntp {
     default   => 'ntp',
   }
 
-  $ntpserver1 = '0.pool.ntp.org'
-  $ntpserver2 = '1.pool.ntp.org'
-  $ntpserver3 = '2.pool.ntp.org'
-  $ntpserver4 = '3.pool.ntp.org'
+  $ntpservers = [ '0.pool.ntp.org', '1.pool.ntp.org',
+                  '2.pool.ntp.org', '3.pool.ntp.org']
 
   package { 'ntp':
     ensure => installed,
