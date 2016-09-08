@@ -14,6 +14,7 @@ sudo rm -rf /etc/puppetlabs/code/environments/production/
 sudo ln -s /vagrant/puppet/production /etc/puppetlabs/code/environments/
 
 sudo /opt/puppetlabs/bin/puppet module install puppetlabs-mysql --modulepath=/etc/puppetlabs/code/modules
+sudo /opt/puppetlabs/bin/puppet module install puppetlabs-puppetdb --modulepath=/etc/puppetlabs/code/modules
 # sudo /opt/puppetlabs/bin/puppet module install puppetlabs-ntp
 # sudo /opt/puppetlabs/bin/puppet module install puppetlabs-haproxy
 # sudo /opt/puppetlabs/bin/puppet module install puppetlabs-apache

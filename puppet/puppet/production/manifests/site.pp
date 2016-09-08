@@ -3,6 +3,11 @@ node default {
   include common
 }
 
+node 'puppet' {
+  include puppetmaster
+  include common
+}
+
 node 'node-01' {
   $webhost1 = 'node-03'
   $webhost2 = 'node-04'
