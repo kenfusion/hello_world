@@ -1,6 +1,6 @@
 
 class tools {
-  $packages = ['tree', 'vim']
+  $packages = hiera('tools_packages')
 
   package { $packages:
   ensure => installed,
