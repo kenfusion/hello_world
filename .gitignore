@@ -1,1 +1,2 @@
 ansible/fact_caching
+*.retry
