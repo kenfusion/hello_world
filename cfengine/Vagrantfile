@@ -1,0 +1,44 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+  # create puppetmaster node
+  config.vm.define :hub do |hub_config|
+      hub_config.vm.box = "surefoot/centos6-64-min"   # packed with git@github.com:kenfusion/packer.git
+      # hub_config.vm.box = "ubuntu/trusty64"
+      hub_config.ssh.insert_key = false
+      hub_config.vm.hostname = "hub.example.com"
+      hub_config.vm.network :private_network, ip: "10.0.15.10"
+      hub_config.vm.network "forwarded_port", guest: 80, host: "8000"
+      hub_config.vm.provider "virtualbox" do |vb|
+        vb.memory = "2048"
+        vb.cpus = 2
+        vb.linked_clone = true
+      end
+      hub_config.vm.provision :shell, path: "bootstrap.sh", privileged: false
+      hub_config.vm.provision "file", source: "~/.gitconfig", destination: ".gitconfig"
+      hub_config.vm.provision "file", source: "~/.gitignore_global", destination: ".gitignore_global"
+      hub_config.vm.provision "file", source: "~/.dircolors", destination: ".dircolors"
+      hub_config.vm.provision "file", source: "~/.bash_aliases", destination: ".bash_aliases"
+  end
+
+  # add some nodes
+  # https://docs.vagrantup.com/v2/vagrantfile/tips.html
+  (1..4).each do |i|
+    config.vm.define "node-0#{i}" do |node|
+        node.vm.box = "surefoot/centos6-64-min"  # packed with git@github.com:kenfusion/packer.git
+        # node.vm.box = "ubuntu/trusty64"
+        node.vm.provision :shell, path: "bootstrap.sh", privileged: false
+        node.ssh.insert_key = false
+        node.vm.hostname = "node-0#{i}.example.com"
+        node.vm.network :private_network, ip: "10.0.15.2#{i}"
+        node.vm.network "forwarded_port", guest: 80, host: "800#{i}"
+        node.vm.provider "virtualbox" do |vb|
+          vb.memory = "256"
+          vb.linked_clone = true
+        end
+    end
+  end
+
+end
