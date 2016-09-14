@@ -12,6 +12,12 @@ sudo bash -c  "cat << EOF >> /etc/hosts
 EOF"
 
 wget http://s3.amazonaws.com/cfengine.packages/quick-install-cfengine-enterprise.sh 2> /dev/null
-sudo bash ./quick-install-cfengine-enterprise.sh hub 2> /dev/null
+
+case $(hostname -s) in
+  hub) component="hub" ;;
+  node-0*) component="agent" ;;
+esac
+
+sudo bash ./quick-install-cfengine-enterprise.sh "$component" 2> /dev/null
 sudo /var/cfengine/bin/cf-agent --bootstrap "10.0.15.10"
 
