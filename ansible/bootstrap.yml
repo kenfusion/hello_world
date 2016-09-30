@@ -36,7 +36,7 @@
 
     - name: install decom script
       file:
-        src: /vagrant/decom.sh
+        src: /vagrant/files/decom.sh
         dest: /home/vagrant/bin/decom
         owner: vagrant
         group: vagrant
