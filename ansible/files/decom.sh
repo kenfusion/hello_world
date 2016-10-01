@@ -1,3 +1,3 @@
 #/bin/env bash
 
-ansible-playbook $HOME/ansible/example-playbooks/decom.yml
+ansible-playbook $HOME/ansible/decom.yml
