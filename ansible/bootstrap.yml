@@ -4,8 +4,8 @@
   tasks:
 
     - name: install insecure vagrant key
-      get_url:
-        url: https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant
+      copy:
+        src: files/insecure_private_key
         dest: /home/vagrant/.ssh/id_rsa
         owner: vagrant
         group: vagrant
