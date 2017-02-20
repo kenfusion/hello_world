@@ -3,7 +3,7 @@
   include_vars: vars.yml
 
 - name: include vault_vars
-  include_vars: vault
+  include_vars: vault.yml
 
 
 - name: install mysql
