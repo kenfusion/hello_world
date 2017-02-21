@@ -1,7 +1,7 @@
 <?php
 $apache_version = apache_get_version();
 $php_version = phpversion();
-$link = mysqli_connect('{{ hostvars[groups['db'][0]]['ansible_eth1']['ipv4']['address'] }}', '{{ hostvars[groups["db"][0]]["vault_db_user"] }}', '{{ hostvars[groups["db"][0]]["vault_db_password"] }}') or die(mysqli_connect_error($link));
+$link = mysqli_connect('{{ hostvars[groups['db'][0]]['ansible_enp0s8']['ipv4']['address'] }}', '{{ hostvars[groups["db"][0]]["vault_db_user"] }}', '{{ hostvars[groups["db"][0]]["vault_db_password"] }}') or die(mysqli_connect_error($link));
 $db_list = mysqli_query($link, "SHOW DATABASES;");
 $db_version =  mysqli_get_server_info($link);
 mysqli_close($link);

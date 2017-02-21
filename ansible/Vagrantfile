@@ -7,11 +7,12 @@ Vagrant.configure("2") do |config|
   # https://docs.vagrantup.com/v2/vagrantfile/tips.html
   (1..4).each do |i|
     config.vm.define "node-0#{i}" do |node|
-        node.vm.box = "surefoot/centos6-64-min"  # packed with git@github.com:kenfusion/packer.git
+        node.vm.box = "surefoot/centos7-min"  # packed with git@github.com:kenfusion/packer.git
         node.ssh.insert_key = false
         node.vm.hostname = "node-0#{i}"
         node.vm.network :private_network, ip: "10.0.15.2#{i}"
         node.vm.network "forwarded_port", guest: 80, host: "800#{i}"
+        node.vm.provision "shell", inline: "systemctl restart network.service", run: "always" #workaround for bug in vagrant 1.9.1 and el7
         node.vm.provider "virtualbox" do |vb|
           vb.memory = "256"
           vb.linked_clone = true
@@ -21,10 +22,11 @@ Vagrant.configure("2") do |config|
 
   # create mgmt node
   config.vm.define :mgmt do |mgmt_config|
-      mgmt_config.vm.box = "surefoot/centos6-64-min"   # packed with git@github.com:kenfusion/packer.git
+      mgmt_config.vm.box = "surefoot/centos7-min"   # packed with git@github.com:kenfusion/packer.git
       mgmt_config.ssh.insert_key = false
       mgmt_config.vm.hostname = "mgmt"
       mgmt_config.vm.network :private_network, ip: "10.0.15.10"
+      mgmt_config.vm.provision "shell", inline: "systemctl restart network.service", run: "always" #workaround for bug in vagrant 1.9.1 and el7
       mgmt_config.vm.provider "virtualbox" do |vb|
         vb.memory = "256"
         vb.linked_clone = true

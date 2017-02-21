@@ -5,6 +5,11 @@
 - name: include vault_vars
   include_vars: vault.yml
 
+- name: install mysql repo on el 7 based OS
+  yum:
+    name: "http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm"
+    state: present
+  when: "ansible_os_family == 'RedHat' and ansible_distribution_major_version == '7'"
 
 - name: install mysql
   yum:
